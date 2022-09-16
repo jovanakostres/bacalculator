@@ -32,10 +32,6 @@ def calculate_beam_angle(img_arr, parameters):
 
         img = cv2.imread(img)
 
-        if img is None:
-            print(colored("Error! No image with specified path!"))
-            sys.exit()
-
         circles = find_circle(img)
 
         if real_ba not in info_beam_angle_width:
@@ -72,8 +68,12 @@ def main_cal(parameters):
     try:
         img_arr = load_images_folder(parameters['calibration_path'])
     except Exception as e:
-        print(e)
-        sys.exit("Error with folder path. Try Again.")
+        print(colored("Error with folder path!"))
+        sys.exit()
+
+    if len(img_arr) == 0:
+        print(colored("Error! No image with specified path.", 'red'))
+        sys.exit()
 
     info_beam_angle_width, info_beam_angle_height = calculate_beam_angle(img_arr, parameters)
     parameters = function_fit(info_beam_angle_width, parameters, 'width')
