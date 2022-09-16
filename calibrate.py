@@ -72,7 +72,7 @@ def main_cal(parameters):
         sys.exit()
 
     if len(img_arr) == 0:
-        print(colored("Error! No image with specified path.", 'red'))
+        print(colored("Error! No images in specified path.", 'red'))
         sys.exit()
 
     info_beam_angle_width, info_beam_angle_height = calculate_beam_angle(img_arr, parameters)

@@ -2,6 +2,8 @@ import sys
 
 import cv2
 import luxpy as lx
+from termcolor import colored
+
 from calibrate import load_images_folder
 
 
@@ -36,8 +38,12 @@ def main_ce(parameters):
     try:
         img_arr = load_images_folder(parameters['exposure_path'])
     except Exception as e:
-        print(e)
-        sys.exit("Error with folder path. Try Again.")
+        print(colored("Error with folder path.", 'red'))
+        sys.exit()
+
+    if len(img_arr) == 0:
+        print(colored("Error! No images in specified path.", 'red'))
+        sys.exit()
 
     img_name, max_val = find_good_img(img_arr)
     print("Image path:", img_name)
