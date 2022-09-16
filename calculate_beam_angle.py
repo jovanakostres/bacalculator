@@ -4,7 +4,7 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import json
 import sys
-
+from termcolor import colored
 import numpy as np
 import cv2  # OpenCV biblioteka
 import luxpy as lx  # package for color science calculations
@@ -106,7 +106,7 @@ def main_cba(parameters, path):
             circles = find_circle(img)
             break
         except:
-            print('\033[91m' + "Error! No image with specified path." + '\033[0m')
+            print(colored("Error! No image with specified path.", 'red'))
             sys.exit()
 
     calculated_ba_width, calculated_ba_height = find_beam_angle(img, circles, parameters)

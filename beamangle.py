@@ -2,10 +2,12 @@ import json
 import sys
 
 import cv2
+from termcolor import colored
 
 from calculate_beam_angle import main_cba
 from calculate_exposure import main_ce
 from calibrate import main_cal, write_parameters
+from colorama import init
 
 
 def print_menu(menu_options):
@@ -27,12 +29,13 @@ def load_parameters(path):
 
 
 if __name__ == '__main__':
+    init()
 
     try:
         parameters = load_parameters('parameters.txt')
         write_parameters('parameters.txt', parameters)
     except:
-        print('\033[91m' + "Error! Badly formatted parameters.txt file!" + '\033[0m')
+        print(colored("Error! Badly formatted parameters.txt file!"))
         sys.exit()
 
     while True:
