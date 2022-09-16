@@ -38,6 +38,10 @@ if __name__ == '__main__':
         print(colored("Error! Badly formatted parameters.txt file!"))
         sys.exit()
 
+    if parameters == {} or parameters is None:
+        print(colored("Error! Badly formatted parameters.txt file!"))
+        sys.exit()
+
     while True:
         menu_options = {
             1: 'Algorithmically choose the best image and calculate the beam angle',
