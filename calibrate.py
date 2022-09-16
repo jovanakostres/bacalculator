@@ -6,6 +6,7 @@ import sys
 import cv2
 import numpy as np
 from scipy.optimize import curve_fit
+from termcolor import colored
 
 from calculate_beam_angle import find_circle, find_beam_angle, objective
 
@@ -30,6 +31,11 @@ def calculate_beam_angle(img_arr, parameters):
         real_ba = float(re.findall("BA-(.+).bmp", img)[0])
 
         img = cv2.imread(img)
+
+        if img is None:
+            print(colored("Error! No image with specified path!"))
+            sys.exit()
+
         circles = find_circle(img)
 
         if real_ba not in info_beam_angle_width:
